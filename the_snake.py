@@ -26,7 +26,7 @@ clock = pygame.time.Clock()
 class GameObject:
     """Base class for game objects."""
 
-    def __init__(self, position, body_color):
+    def __init__(self, position=(GRID_SIZE * 10, GRID_SIZE * 10), body_color=BOARD_BACKGROUND_COLOR):
         """Initialize a game object with position and color."""
         self.position = position
         self.body_color = body_color
@@ -149,7 +149,7 @@ def main():
         clock.tick(SPEED)
         screen.fill(BOARD_BACKGROUND_COLOR)
 
-        handle_keys()
+        handle_keys(snake)
         snake.move()
         snake.draw()
         apple.draw()
