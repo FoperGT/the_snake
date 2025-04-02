@@ -121,21 +121,21 @@ class Snake(GameObject):
         self.last = None
         self.length = 3
 
-    def handle_keys(self):
-        """Handle keyboard input for snake movement."""
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                raise SystemExit
-            elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_UP and self.direction != DOWN:
-                    self.update_direction(UP)
-                elif event.key == pygame.K_DOWN and self.direction != UP:
-                    self.update_direction(DOWN)
-                elif event.key == pygame.K_LEFT and self.direction != RIGHT:
-                    self.update_direction(LEFT)
-                elif event.key == pygame.K_RIGHT and self.direction != LEFT:
-                    self.update_direction(RIGHT)
+def handle_keys(self):
+    """Handle keyboard input for snake movement."""
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            raise SystemExit
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP and self.direction != DOWN:
+                self.update_direction(UP)
+            elif event.key == pygame.K_DOWN and self.direction != UP:
+                self.update_direction(DOWN)
+            elif event.key == pygame.K_LEFT and self.direction != RIGHT:
+                self.update_direction(LEFT)
+            elif event.key == pygame.K_RIGHT and self.direction != LEFT:
+                self.update_direction(RIGHT)
 
 
 def main():
@@ -148,7 +148,7 @@ def main():
         clock.tick(SPEED)
         screen.fill(BOARD_BACKGROUND_COLOR)
 
-        snake.handle_keys()
+        handle_keys()
         snake.move()
         snake.draw()
         apple.draw()
