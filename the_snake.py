@@ -158,7 +158,7 @@ def main():
             apple.randomize_position()
 
         head_x, head_y = snake.get_head_position()
-        if (head_x < 0 or head_x >= SCREEN_WIDTH 
+        if (head_x < 0 or head_x >= SCREEN_WIDTH
                 or head_y < 0 or head_y >= SCREEN_HEIGHT):
             snake.reset()
             apple.randomize_position()
