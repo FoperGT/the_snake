@@ -121,6 +121,7 @@ class Snake(GameObject):
         self.last = None
         self.length = 3
 
+
 def handle_keys(self):
     """Handle keyboard input for snake movement."""
     for event in pygame.event.get():
