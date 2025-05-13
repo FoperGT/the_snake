@@ -24,46 +24,37 @@ clock = pygame.time.Clock()
 
 
 class GameObject:
-    """Base class for game objects."""
 
     def __init__(self, position=(GRID_SIZE * 10, GRID_SIZE * 10),
                  body_color=BOARD_BACKGROUND_COLOR):
-        """Initialize a game object with position and color."""
         self.position = position
         self.body_color = body_color
 
     def draw(self):
-        """Draw the game object on the screen."""
         pass
 
 
 class Apple(GameObject):
-    """Class representing the apple in the snake game."""
 
     def __init__(self, position=(GRID_SIZE * 10, GRID_SIZE * 10)):
-        """Initialize an apple with default or specified position."""
         super().__init__(position, APPLE_COLOR)
 
     def randomize_position(self):
-        """Randomize the apple's position on the grid."""
         self.position = (
             randint(0, GRID_WIDTH - 1) * GRID_SIZE,
             randint(0, GRID_HEIGHT - 1) * GRID_SIZE
         )
 
     def draw(self):
-        """Draw the apple on the screen."""
         rect = pygame.Rect(self.position, (GRID_SIZE, GRID_SIZE))
         pygame.draw.rect(screen, self.body_color, rect)
         pygame.draw.rect(screen, BORDER_COLOR, rect, 1)
 
 
 class Snake(GameObject):
-    """Class representing the snake in the game."""
 
     def __init__(self, length=3, position=(GRID_SIZE * 5, GRID_SIZE * 5),
                  body_color=SNAKE_COLOR, direction=RIGHT):
-        """Initialize the snake with specified parameters."""
         super().__init__(position, body_color)
         self.length = length
         self.positions = [position]
@@ -74,12 +65,10 @@ class Snake(GameObject):
         self.last = None
 
     def update_direction(self, direction):
-        """Update the snake's next direction if valid."""
         if direction != self.direction:
             self.next_direction = direction
 
     def move(self):
-        """Move the snake in its current direction."""
         if self.next_direction:
             self.direction = self.next_direction
             self.next_direction = None
@@ -96,7 +85,6 @@ class Snake(GameObject):
             del self.positions[-1]
 
     def draw(self):
-        """Draw the snake on the screen."""
         for position in self.positions[:-1]:
             rect = pygame.Rect(position, (GRID_SIZE, GRID_SIZE))
             pygame.draw.rect(screen, self.body_color, rect)
@@ -111,11 +99,9 @@ class Snake(GameObject):
             pygame.draw.rect(screen, BOARD_BACKGROUND_COLOR, last_rect)
 
     def get_head_position(self):
-        """Return the current position of the snake's head."""
         return self.positions[0]
 
     def reset(self):
-        """Reset the snake to its initial state."""
         self.positions = [(GRID_SIZE * 5, GRID_SIZE * 5)]
         self.direction = RIGHT
         self.next_direction = None
@@ -124,7 +110,6 @@ class Snake(GameObject):
 
 
 def handle_keys(self):
-    """Handle keyboard input for snake movement."""
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -141,7 +126,6 @@ def handle_keys(self):
 
 
 def main():
-    """Main game loop."""
     snake = Snake()
     apple = Apple()
     apple.randomize_position()
